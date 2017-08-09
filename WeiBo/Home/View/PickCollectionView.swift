@@ -69,6 +69,13 @@ extension PickCollectionView:UICollectionViewDelegate,UICollectionViewDataSource
     }
     
     
+//    func collectionView(collectionView: UICollectionView, collectionViewLayout: UICollectionViewLayout, indexPath: NSIndexPath) -> CGSize{
+//        
+////        UICollectionViewFlowLayout
+//        
+//        return CGSize(width: itemWith, height: itemWith);
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         var index = indexPath

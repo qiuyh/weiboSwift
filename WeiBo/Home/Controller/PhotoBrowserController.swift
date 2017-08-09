@@ -94,14 +94,15 @@ extension PhotoBrowserController:UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PhotosCell
         
         cell.display(picUrl: picUrls[indexPath.row])
-        cell.dismissBlock { () in
-            self.dismiss(animated: true, completion: nil)
+        cell.dismissBlock { [weak self] () in
+            
+            self?.indexPath = indexPath
+            self?.imageView.image = cell.lagerImageView.image
+            
+            self?.dismiss(animated: true, completion: nil)
     
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: HiddenPhotoNoti), object: indexPath)
         }
-        
-        self.indexPath = indexPath
-        self.imageView.image = cell.lagerImageView.image
         
         return cell
     }

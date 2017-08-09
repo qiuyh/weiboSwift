@@ -142,10 +142,10 @@ extension HomeCell{
         reContentLabel.customEmojiPlistName = "expressionImage_custom"
         reContentLabel.sizeToFit()
         
-        pickView = PickCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         layout.itemSize = CGSize(width:itemWith, height: itemWith)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
+        pickView = PickCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
         contentView.addSubview(avatarImageView)
         contentView.addSubview(enterpriseImageView)

@@ -122,16 +122,16 @@ class PhotosCell: UICollectionViewCell {
             self.isLoading = false
         }
       
-        if lagerImageUrl.hasSuffix(".gif") {
-
-            SDWebImageManager.shared().loadImage(with: url, options: [], progress: nil, completed: { (_, data, _, _, _, _) in
-
-                self.lagerImageView.image = UIImage.sd_animatedGIF(with: data as Data!)
-            })
-
-        }else{
-           
-        }
+//        if lagerImageUrl.hasSuffix(".gif") {
+////            print(url)
+//            SDWebImageManager.shared().loadImage(with: url, options: [], progress: nil, completed: { (image, data, error, cacheType, finished, imageURL) in
+//                print(image,data,error,cacheType,finished,imageURL)
+//                self.lagerImageView.image = UIImage.sd_animatedGIF(with: data as Data!)
+//            })
+//
+//        }else{
+//           
+//        }
     }
     
     

@@ -56,6 +56,8 @@ class PickImageCell: UICollectionViewCell {
             gifImageView.isHidden = true
         }
         
+//        print(iconImageView)
+        
         iconImageView.sd_setImage(with: picURL, placeholderImage: UIImage(named: "empty_picture"), options: []) { (image, _, _, _) in
             
 //            if (image != nil) {
