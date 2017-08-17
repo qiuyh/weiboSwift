@@ -69,6 +69,9 @@ class PhotosCell: UICollectionViewCell {
 
     
     func display(picUrl : URL){
+        
+        SVProgressHUD.dismiss()
+        
         scale = minScale
         isDoubleTapingForZoom = false
         scrollview.setZoomScale(scale, animated: false)
@@ -79,25 +82,6 @@ class PhotosCell: UICollectionViewCell {
         guard let image1 = image else {
             return
         }
-        
-        let imageSize = image1.size
-        
-        let x : CGFloat = 0
-        var y : CGFloat = 0
-        let w : CGFloat = scrollview.frame.size.width
-        let h : CGFloat = (imageSize.height * 2 * w) / (imageSize.width * 2)
-        
-        if h  > scrollview.frame.size.height {
-            y = 0
-        }else{
-            y = (scrollview.frame.size.height - h) * 0.5
-        }
-     
-        imagewith   = w
-        imageHeight = h
-        
-        lagerImageView.frame = CGRect(x: x, y: y, width: w, height: h)
-        scrollview.contentSize = CGSize(width: 0, height: lagerImageView.frame.size.height)
         
         let lagerImageUrl = urlString.replacingOccurrences(of: "thumbnail", with: "bmiddle")
         
@@ -120,6 +104,25 @@ class PhotosCell: UICollectionViewCell {
             
             SVProgressHUD.dismiss()
             self.isLoading = false
+            
+            let imageSize = image?.size
+            
+            let x : CGFloat = 0
+            var y : CGFloat = 0
+            let w : CGFloat = self.scrollview.frame.size.width
+            let h : CGFloat = (imageSize!.height * 2 * w) / (imageSize!.width * 2)
+            
+            if h  > self.scrollview.frame.size.height {
+                y = 0
+            }else{
+                y = (self.scrollview.frame.size.height - h) * 0.5
+            }
+            
+            self.imagewith   = w
+            self.imageHeight = h
+            
+            self.lagerImageView.frame = CGRect(x: x, y: y, width: w, height: h)
+            self.scrollview.contentSize = CGSize(width: 0, height: self.lagerImageView.frame.size.height)
         }
       
 //        if lagerImageUrl.hasSuffix(".gif") {

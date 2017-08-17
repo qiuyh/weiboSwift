@@ -274,14 +274,42 @@ extension HomeController {
             }
             
             let resultArray = dic["statuses"] as! [[String:Any]]
-            print(resultArray)
+//            print(resultArray)
             var tempViewModel = [StatusViewModel]()
             for statusDic in resultArray{
                 let status = StatusModel(dict: statusDic as [String : AnyObject])
                 let statusViewModel = StatusViewModel(statusModel: status)
                 
+                var dicM = [String : Any]()
+                dicM["source"] = statusViewModel.source
+                dicM["topicContent"] = statusViewModel.text
+                dicM["commentsCount"] = statusViewModel.attitudes_count
+                dicM["plNum"] = statusViewModel.comments_count
+                dicM["currentTimeType"] = statusViewModel.created_at
+                dicM["userHeadPicUrl"] = statusViewModel.profile_image_url
+                dicM["userNick"] = statusViewModel.screen_name
+                
+                var i:Int = 0
+                var picArrM = [[String : Any]]()
+                for url in statusViewModel.pic_urls{
+                    var picDicM = [String : Any]()
+                    i += 1
+                    let urlString = url.absoluteString
+                    picDicM["pictureThumpath"] = urlString
+                    let lagerImageUrl = urlString.replacingOccurrences(of: "thumbnail", with: "bmiddle")
+                    picDicM["picturePath"] = lagerImageUrl
+                    picDicM["sortNum"] = i
+                    
+                    picArrM.append(picDicM)
+                }
+                    
+                dicM["topicPictureList"] = picArrM
+                
+                print(dicM)
+                
                 tempViewModel.append(statusViewModel)
             }
+
             
             if loadNew {
                 self?.dataArray = tempViewModel + (self?.dataArray)!
